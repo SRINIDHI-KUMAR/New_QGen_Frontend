@@ -907,6 +907,66 @@ body {
   to { transform: rotate(360deg); }
 }
 
+
+/* Make logout button red */
+.logout-btn {
+  background: var(--danger) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 40px !important;
+  padding: 0.5rem 1.2rem !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background: var(--danger-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* Reduce the width of login & register forms */
+.auth-card {
+  max-width: 380px;   /* was 450px – now smaller */
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto; 
+}
+
+.auth-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 80vh !important;
+  padding: 1rem;         /* small gutter on small screens */
+}
+
+/* Add space between the form and the switch text */
+.auth-switch {
+  margin-top: 2rem;            /* increase as needed */
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 select.curved-input {
   -webkit-appearance: none;
   -moz-appearance: none;
