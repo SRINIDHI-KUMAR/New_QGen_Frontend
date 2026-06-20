@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+// Always use the Render backend in production, localhost in dev
+const isLocal = window.location.hostname === 'localhost';
+const API_BASE = isLocal
+  ? 'http://localhost:5000/api'
+  : 'https://new-qgen-backend.onrender.com/api';
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: API_BASE,
 });
 
 // Upload
@@ -20,4 +26,4 @@ export const listSubjects = () =>
 
 // Generated papers history
 export const listPapers = () =>
-  API.get('/papers');      // You can add this route in backend
+  API.get('/papers');
