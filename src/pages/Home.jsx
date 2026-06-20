@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listSubjects, listPapers } from '../api';
 import { Link } from 'react-router-dom';
+import { FiFile, FiClipboard, FiZap, FiUpload, FiEdit, FiList } from 'react-icons/fi';
 
 export default function Home() {
   const [subjectsCount, setSubjectsCount] = useState(0);
@@ -32,21 +33,21 @@ export default function Home() {
       {/* Stats */}
       <div className="stats-grid home-stats">
         <div className="stat-card gradient-card-1">
-          <div className="stat-icon">📄</div>
+          <div className="stat-icon"><FiFile /></div>
           <div className="stat-info">
             <h3>Subjects</h3>
             <div className="stat-number">{subjectsCount}</div>
           </div>
         </div>
         <div className="stat-card gradient-card-2">
-          <div className="stat-icon">📋</div>
+          <div className="stat-icon"><FiClipboard /></div>
           <div className="stat-info">
             <h3>Papers</h3>
             <div className="stat-number">{papersCount}</div>
           </div>
         </div>
         <div className="stat-card gradient-card-3">
-          <div className="stat-icon">⚡</div>
+          <div className="stat-icon"><FiZap /></div>
           <div className="stat-info">
             <h3>Quick Actions</h3>
             <div className="stat-number" style={{ fontSize: '1.2rem' }}>
@@ -61,11 +62,11 @@ export default function Home() {
         <h2>Start Now</h2>
         <div className="action-grid">
           <Link to="/upload" className="action-item">
-            <span className="action-icon">📤</span>
+            <span className="action-icon"><FiUpload /></span>
             <span>Upload Materials</span>
           </Link>
           <Link to="/generate" className="action-item">
-            <span className="action-icon">📝</span>
+            <span className="action-icon"><FiEdit /></span>
             <span>Generate Paper</span>
           </Link>
         </div>
@@ -73,7 +74,10 @@ export default function Home() {
 
       {/* Recent History */}
       <section className="history-panel">
-        <h3>📜 Recent Papers</h3>
+        <h3>
+          <FiList style={{ marginRight: '0.4rem', color: 'var(--accent-blue)', verticalAlign: 'middle' }} />
+          Recent Papers
+        </h3>
         {recentPapers.length === 0 ? (
           <div className="empty-history">No papers generated yet. Start by uploading a subject.</div>
         ) : (

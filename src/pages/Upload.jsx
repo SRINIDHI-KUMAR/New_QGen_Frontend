@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { uploadSubject } from '../api';
+import { FiUploadCloud, FiFile, FiFolder, FiCheck, FiLoader } from 'react-icons/fi';
 
 export default function Upload() {
   const [subjectName, setSubjectName] = useState('');
@@ -14,7 +15,7 @@ export default function Upload() {
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!subjectName || !syllabus || !textbook || !pyqs) {
-      setMessage({ text: '❌ All fields and PDFs are required.', type: 'error' });
+      setMessage({ text: 'All fields and PDFs are required.', type: 'error' });
       return;
     }
     setLoading(true);
@@ -28,11 +29,11 @@ export default function Upload() {
       formData.append('pyqs', pyqs);
 
       await uploadSubject(formData);
-      setMessage({ text: '✅ Upload successful! Redirecting...', type: 'success' });
+      setMessage({ text: 'Upload successful! Redirecting…', type: 'success' });
       setTimeout(() => navigate('/generate'), 2000);
     } catch (err) {
       setMessage({
-        text: `❌ ${err.response?.data?.error || err.message}`,
+        text: err.response?.data?.error || err.message,
         type: 'error',
       });
     } finally {
@@ -53,16 +54,16 @@ export default function Upload() {
     >
       {file ? (
         <div className="file-info">
-          <span className="file-icon">📄</span>
+          <span className="file-icon"><FiFile /></span>
           <div className="file-details">
             <div className="file-name">{file.name}</div>
             <div className="file-meta">{(file.size / 1024).toFixed(0)} KB</div>
           </div>
-          <span className="success-tick">✓</span>
+          <span className="success-tick"><FiCheck /></span>
         </div>
       ) : (
         <>
-          <div className="upload-illustration">📂</div>
+          <div className="upload-illustration"><FiFolder /></div>
           <div className="upload-title">{labelText}</div>
           <div className="upload-subtitle">
             Drop PDF or <span className="browse-link">browse</span>
@@ -81,8 +82,8 @@ export default function Upload() {
 
   return (
     <div className="glass-card" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
-      <h2 className="animated-title" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>
-        📤 Upload Subject
+      <h2 className="animated-title" style={{ fontSize: '2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+        <FiUploadCloud /> Upload Subject
       </h2>
 
       <form onSubmit={handleUpload} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -105,7 +106,13 @@ export default function Upload() {
         </div>
 
         <button type="submit" className="generate-btn" disabled={loading} style={{ width: '100%' }}>
-          {loading ? '⏳ Processing...' : 'Upload & Process'}
+          {loading ? (
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <FiLoader className="spin" /> Processing...
+            </span>
+          ) : (
+            'Upload & Process'
+          )}
         </button>
 
         {message.text && (

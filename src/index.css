@@ -591,7 +591,7 @@ body {
 }
 .gradient-card-3 {
   background: linear-gradient(135deg, #10b98120, #22d3ee20);
-  border-color: #10b981;
+  border-color: #10b98100;
 }
 
 .light-theme .gradient-card-1 {
@@ -897,4 +897,34 @@ body {
   color: #10b981;
   font-size: 0.9rem;
   text-align: center;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+select.curved-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Dark Theme Dropdown Options */
+select.curved-input option {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* Light Theme Dropdown Options */
+.light-theme select.curved-input option {
+  background-color: #ffffff;
+  color: #0f172a;
 }
